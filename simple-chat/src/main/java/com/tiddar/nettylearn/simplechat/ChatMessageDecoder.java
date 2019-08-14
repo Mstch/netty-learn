@@ -25,7 +25,6 @@ public class ChatMessageDecoder extends MessageToMessageDecoder<ByteBuf> {
   static {
     COMMAND_MAP.put("LIST", Command.LIST);
     COMMAND_MAP.put("LOGIN", Command.LOGIN);
-    COMMAND_MAP.put("SEND", Command.SEND);
   }
 
   @Override

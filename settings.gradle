@@ -1,4 +1,5 @@
 rootProject.name = 'netty-learn'
 include 'ping-pong'
 include 'simple-chat'
+include 'standard-chat'
 

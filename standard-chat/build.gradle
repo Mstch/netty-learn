@@ -1,0 +1,56 @@
+plugins {
+    id 'java'
+    id 'nu.studer.jooq' version '3.0.3'
+}
+group 'com.tiddar'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+    compile 'org.jooq:jooq'
+    jooqRuntime group: 'mysql', name: 'mysql-connector-java', version: '5.1.6'
+}
+
+jooq {
+    version = '3.11.11'
+    edition = 'OSS'
+    sample(sourceSets.main) {
+        jdbc {
+            driver = 'com.mysql.jdbc.Driver'
+            url = 'jdbc:mysql://tiddar.com:3306/chat'
+            user = 'root'
+            password = 'Zhang123'
+        }
+        generator {
+            name = 'org.jooq.codegen.DefaultGenerator'
+            strategy {
+                name = 'org.jooq.codegen.DefaultGeneratorStrategy'
+                // ...
+            }
+            database {
+                includes = 'chat'
+                excludes = ''
+            }
+            generate {
+                relations = true
+                deprecated = false
+                records = true
+                immutablePojos = true
+                fluentSetters = true
+                // ...
+            }
+            target {
+                packageName = 'com.tiddar.nettylearn.stdchat.model'
+                // directory = ...
+            }
+        }
+    }
+}
